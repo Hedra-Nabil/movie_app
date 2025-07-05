@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie_app/movie_app/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:movie_app/movie_app/presenter/controllers/top_rated/cubit/top_rated_cubit.dart';
 import 'package:movie_app/movie_app/presenter/controllers/top_rated/cubit/top_rated_state.dart';
 import 'package:movie_app/movie_app/ui/widgets/movie_grid.dart';
-
 
 class TopRatedTab extends StatefulWidget {
   const TopRatedTab({super.key});

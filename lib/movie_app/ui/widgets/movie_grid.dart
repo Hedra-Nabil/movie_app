@@ -33,7 +33,7 @@ class MovieGrid extends StatelessWidget {
             return _buildShimmerCard(); 
           }
 
-          return MoviePosterCard(movie: movies[index]);
+          return MoviePosterCard(movie: movies[index], showRating: true);
         },
       ),
     );

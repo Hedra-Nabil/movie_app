@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/featured_state.dart';
+import 'package:movie_app/movie_app/presenter/controllers/featured/cubit/featured_cubit.dart';
+import 'package:movie_app/movie_app/presenter/controllers/featured/cubit/featured_state.dart';
+import 'package:movie_app/movie_app/ui/details_screen.dart';
+
 
 class FeaturedMovieCard extends StatelessWidget {
   const FeaturedMovieCard({super.key});
@@ -28,12 +30,30 @@ class FeaturedMovieCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               itemCount: movies.length,
               itemBuilder: (context, index) {
-                return Container(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  margin: EdgeInsets.only(
-                      right: index < movies.length - 1 ? 12 : 0),
-                  child: _buildMovieCard(
-                      movie: movies[index], rank: index + 1),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (_) => DetailsScreen(
+                              movie: movies[index],
+                              
+                              isLarge: true,
+                            ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    margin: EdgeInsets.only(
+                      right: index < movies.length - 1 ? 12 : 0,
+                    ),
+                    child: _buildMovieCard(
+                      movie: movies[index],
+                      rank: index + 1,
+                    ),
+                  ),
                 );
               },
             ),
@@ -61,26 +81,27 @@ class FeaturedMovieCard extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
           ),
-          child: movie.posterPath != null && movie.posterPath!.isNotEmpty
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: CachedNetworkImage(
-                    imageUrl: movie.fullPosterUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+          child:
+              movie.posterPath != null && movie.posterPath!.isNotEmpty
+                  ? ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: CachedNetworkImage(
+                      imageUrl: movie.fullPosterUrl,
+                      imageBuilder:
+                          (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                      placeholder: (context, url) => _buildLoadingContainer(),
+                      errorWidget:
+                          (context, url, error) => _buildFallbackContainer(),
                     ),
-                    placeholder: (context, url) =>
-                        _buildLoadingContainer(),
-                    errorWidget: (context, url, error) =>
-                        _buildFallbackContainer(),
-                  ),
-                )
-              : _buildFallbackContainer(),
+                  )
+                  : _buildFallbackContainer(),
         ),
         Container(
           width: double.infinity,
@@ -101,8 +122,7 @@ class FeaturedMovieCard extends StatelessWidget {
           bottom: 16,
           left: 16,
           child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(12),

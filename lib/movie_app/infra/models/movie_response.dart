@@ -1,3 +1,4 @@
+
 import 'package:movie_app/movie_app/domain/entities/movie.dart';
 
 class MovieResponse {

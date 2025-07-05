@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
 import 'package:movie_app/movie_app/ui/widgets/featured_movie_card.dart';
 import 'package:movie_app/movie_app/ui/widgets/now_playing_tab.dart';
 import 'package:movie_app/movie_app/ui/widgets/popular_tab.dart';
 import 'package:movie_app/movie_app/ui/widgets/search_bar_widget.dart';
 import 'package:movie_app/movie_app/ui/widgets/top_rated_tab.dart';
 import 'package:movie_app/movie_app/ui/widgets/upcoming_tab.dart';
-
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -31,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     controller = TextEditingController();
-    context.read<FeaturedCubit>().fetchFeaturedMovies();
-    context.read<NowPlayingCubit>().fetchNowPlayingMovies();
+    // context.read<FeaturedCubit>().fetchFeaturedMovies();
+    // context.read<NowPlayingCubit>().fetchNowPlayingMovies();
   }
 
   @override
@@ -46,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
+        
         backgroundColor: const Color(0xFF222831),
         body: SafeArea(
           child: Column(

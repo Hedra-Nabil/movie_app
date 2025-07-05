@@ -1,24 +1,37 @@
-
 import 'package:flutter/material.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
+import 'package:movie_app/movie_app/ui/details_screen.dart';
 
 class SmallDetailMovieCard extends StatelessWidget {
   final Movie movie;
   final bool isLarge;
+  final VoidCallback? onTap;
 
   const SmallDetailMovieCard({
     super.key,
     required this.movie,
     this.isLarge = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('Movie tapped: ${movie.title}');
-      },
+      onTap:
+          onTap ??
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => DetailsScreen(movie: movie, isLarge: isLarge),
+              ),
+            );
+          },
       child: Container(
         height: 120,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
@@ -29,7 +42,7 @@ class SmallDetailMovieCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: _buildPosterImage(),
             ),
-            _buildMovieInfo(),
+            _buildMovieInfo(context),
           ],
         ),
       ),
@@ -52,7 +65,11 @@ class SmallDetailMovieCard extends StatelessWidget {
     );
   }
 
-  Widget _buildMovieInfo() {
+  Widget _buildMovieInfo(BuildContext context) {
+    final isInWatchlist = context
+        .select<WatchlistCubit, List<Movie>>((cubit) => cubit.state.movies)
+        .contains(movie);
+
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
@@ -62,15 +79,21 @@ class SmallDetailMovieCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                movie.title,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: isLarge ? 18 : 16,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: SizedBox(
+                  width: 140,
+                  child: Text(
+                    movie.title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: isLarge ? 18 : 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),

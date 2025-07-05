@@ -4,7 +4,6 @@ import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcomin
 import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcoming_state.dart';
 import 'package:movie_app/movie_app/ui/widgets/movie_grid.dart';
 
-
 class UpcomingTab extends StatefulWidget {
   const UpcomingTab({super.key});
 

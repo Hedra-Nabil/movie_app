@@ -1,34 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/movie_app/domain/entities/movie.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:movie_app/movie_app/ui/details_screen.dart';
 
 class MoviePosterCard extends StatelessWidget {
   final Movie movie;
   final bool isLarge;
+  final bool showRating;
 
-  const MoviePosterCard({super.key, required this.movie, this.isLarge = false});
+  const MoviePosterCard({
+    super.key,
+    required this.movie,
+    this.isLarge = false,
+    required this.showRating,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DetailsScreen(
+              movie: movie,
+              isLarge: true,
+            ),
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Stack(
-          children: [
-            _buildPosterImage(),
-            _buildGradientOverlay(),
-            _buildRatingBadge(),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
           ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Stack(
+            children: [
+              _buildPosterImage(),
+              _buildGradientOverlay(),
+              if (showRating) _buildRatingBadge(),
+            ],
+          ),
         ),
       ),
     );
@@ -114,7 +135,6 @@ class MoviePosterCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            
           ],
         ),
       ),

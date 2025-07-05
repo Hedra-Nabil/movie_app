@@ -1,11 +1,10 @@
 // search_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Search/cubit/search_cubit.dart';
-
 
 import 'dart:async';
 
+import 'package:movie_app/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
 import 'package:movie_app/movie_app/ui/widgets/search_bar_widget.dart';
 import 'package:movie_app/movie_app/ui/widgets/small_detail_movie_card.dart';
 
@@ -85,15 +84,24 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildInitialState() {
-    return const Center(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.search, size: 80, color: Colors.white38),
-          SizedBox(height: 20),
-          Text(
-            'Search for your favorite movies',
-            style: TextStyle(color: Colors.white70, fontSize: 16),
+          //Icon(Icons.search, size: 80, color: Colors.white38),
+          Image.asset('assets/images/no-results.png'),
+          const SizedBox(height: 20),
+          const Text(
+            'we are sorry, we can \nnot find the movie :(',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Text(
+            'Find your movie by Type title,\n categories, years, etc ',
+            style: TextStyle(color: Colors.white70, fontSize: 14),
           ),
         ],
       ),

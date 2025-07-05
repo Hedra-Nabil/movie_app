@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/movie_app/ui/home_screen.dart';
 import 'package:movie_app/movie_app/ui/search_screen.dart';
+import 'package:movie_app/movie_app/ui/watchlist_screen.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,20 +14,13 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
-    HomeScreen(),
-    SearchScreen(),
-    //WatchListPage(),
-  ];
+  final List<Widget> _pages = [HomeScreen(), SearchScreen(), WatchlistScreen()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF222831),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: _buildBottomNavBar(),
     );
   }
@@ -35,9 +30,7 @@ class _MainScreenState extends State<MainScreen> {
       height: 80,
       decoration: const BoxDecoration(
         color: Color(0xFF222831),
-        border: Border(
-          top: BorderSide(color: Color(0xFF303338), width: 1),
-        ),
+        border: Border(top: BorderSide(color: Color(0xFF303338), width: 1)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

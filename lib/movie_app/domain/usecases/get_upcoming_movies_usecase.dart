@@ -1,4 +1,3 @@
-
 import 'package:movie_app/movie_app/domain/entities/movie.dart';
 import 'package:movie_app/movie_app/domain/infra/movie_repository.dart';
 

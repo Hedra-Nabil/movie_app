@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:movie_app/movie_app/domain/entities/movie.dart';
 
-
 abstract class NowPlayingState extends Equatable {
   const NowPlayingState();
 

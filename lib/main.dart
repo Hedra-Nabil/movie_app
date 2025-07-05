@@ -11,14 +11,14 @@ import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/feature
 import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
 import 'package:movie_app/movie_app/presenter/controllers/Popular/cubit/popular_cubit.dart';
 import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcoming_cubit.dart';
+import 'package:movie_app/movie_app/presenter/controllers/movie_details/cubit/movie_details_cubit.dart';
 import 'package:movie_app/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
 import 'package:movie_app/movie_app/presenter/controllers/top_rated/cubit/top_rated_cubit.dart';
-import 'package:movie_app/movie_app/ui/main_screen.dart';
+import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
+import 'package:movie_app/movie_app/ui/splash_screen.dart';
 
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+void main() {
+  runApp(BlocProvider(create: (_) => WatchlistCubit(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -85,12 +85,17 @@ class MyApp extends StatelessWidget {
           BlocProvider<SearchCubit>(
             create: (context) => SearchCubit(context.read<MovieApiService>()),
           ),
+          BlocProvider<MovieDetailsCubit>(
+            create:
+                (context) =>
+                    MovieDetailsCubit(context.read<MovieRepositoryImpl>()),
+          ),
         ],
         child: MaterialApp(
           title: 'Movie App',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.darkTheme,
-          home: const MainScreen(),
+          home: SplashScreen(),
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(

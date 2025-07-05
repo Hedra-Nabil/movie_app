@@ -1,8 +1,4 @@
-Absolutely — here’s a refined, detailed, and professional `README.md` in English, tailored for your Flutter & Dio-based movie app, including shared preferences.
 
----
-
-```markdown
 # 🎬 Movie App
 
 A polished Flutter application that fetches and displays popular movies using TMDB API. Built with Dio for networking, Shared Preferences for local state, and designed with scalable architecture and clean UI.

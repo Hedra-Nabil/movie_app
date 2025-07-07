@@ -1,5 +1,4 @@
-
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
 
 class MovieResponse {
   final Dates? dates;

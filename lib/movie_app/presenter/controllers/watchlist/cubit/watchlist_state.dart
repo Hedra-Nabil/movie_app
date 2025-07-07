@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
 
 class WatchlistState extends Equatable {
-  final List<Movie> movies;
+  final List<MovieDetails> movieDetails;
 
-  const WatchlistState({this.movies = const []});
+  const WatchlistState({this.movieDetails = const []});
 
   @override
-  List<Object?> get props => [movies];
+  List<Object?> get props => [movieDetails];
 }

@@ -1,12 +1,11 @@
 // search_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
+import 'package:movie/movie_app/ui/widgets/search_bar_widget.dart';
+import 'package:movie/movie_app/ui/widgets/small_detail_movie_card.dart';
 
 import 'dart:async';
-
-import 'package:movie_app/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
-import 'package:movie_app/movie_app/ui/widgets/search_bar_widget.dart';
-import 'package:movie_app/movie_app/ui/widgets/small_detail_movie_card.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

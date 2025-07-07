@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+
 abstract class FeaturedState extends Equatable {
   const FeaturedState();
 

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/theme/app_theme.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_now_playing_movies_usecase.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_popular_movies_usecase.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_top_rated_movies_usecase.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_upcoming_movies_usecase.dart';
-import 'package:movie_app/movie_app/infra/datasources/movie_api_service.dart';
-import 'package:movie_app/movie_app/infra/repository/movie_repository_impl.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Popular/cubit/popular_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcoming_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/movie_details/cubit/movie_details_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/top_rated/cubit/top_rated_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
-import 'package:movie_app/movie_app/ui/splash_screen.dart';
+import 'package:movie/core/theme/app_theme.dart';
+import 'package:movie/movie_app/domain/usecases/get_now_playing_movies_usecase.dart';
+import 'package:movie/movie_app/domain/usecases/get_popular_movies_usecase.dart';
+import 'package:movie/movie_app/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:movie/movie_app/domain/usecases/get_upcoming_movies_usecase.dart';
+import 'package:movie/movie_app/infra/datasources/movie_api_service.dart';
+import 'package:movie/movie_app/infra/repository/movie_repository_impl.dart';
+import 'package:movie/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/Popular/cubit/popular_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/Upcoming/cubit/upcoming_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/top_rated/cubit/top_rated_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/search/cubit/search_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/movie_details/cubit/movie_details_cubit.dart';
+import 'package:movie/movie_app/ui/splash_screen.dart';
 
 void main() {
   runApp(BlocProvider(create: (_) => WatchlistCubit(), child: const MyApp()));

@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/movie_app/domain/entities/movie_details.dart';
-import 'package:movie_app/movie_app/infra/models/movie_response.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
+import 'package:movie/movie_app/infra/models/credits_model.dart';
+import 'package:movie/movie_app/infra/models/movie_response.dart';
+import 'package:movie/movie_app/infra/models/reviews_model.dart';
 
 class MovieApiService {
   final Dio _dio;
@@ -108,7 +110,26 @@ class MovieApiService {
         return Exception('Network error: ${error.message}');
     }
   }
+  Future<CreditsResponse> getMovieCredits(int movieId) async {
+    try {
+      final response = await _dio.get('/movie/$movieId/credits');
+      return CreditsResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    }
+  }
 
+  Future<ReviewsResponse> getMovieReviews(int movieId, {int page = 1}) async {
+    try {
+      final response = await _dio.get(
+        '/movie/$movieId/reviews',
+        queryParameters: {'language': 'en-US', 'page': page},
+      );
+      return ReviewsResponse.fromJson(response.data);
+    } on DioException catch (e) {
+      throw _handleDioError(e);
+    }
+  }
   void dispose() {
     _dio.close();
   }

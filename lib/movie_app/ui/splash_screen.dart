@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:movie/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
 import 'dart:async';
 
-import 'package:movie_app/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
-import 'package:movie_app/movie_app/ui/main_screen.dart';
-
+import 'package:movie/movie_app/ui/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

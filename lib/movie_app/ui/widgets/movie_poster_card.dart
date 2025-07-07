@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/ui/details_screen.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:movie_app/movie_app/ui/details_screen.dart';
 
 class MoviePosterCard extends StatelessWidget {
   final Movie movie;

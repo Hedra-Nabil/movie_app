@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcoming_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/Upcoming/cubit/upcoming_state.dart';
-import 'package:movie_app/movie_app/ui/widgets/movie_grid.dart';
+import 'package:movie/movie_app/presenter/controllers/Upcoming/cubit/upcoming_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/Upcoming/cubit/upcoming_state.dart';
+import 'package:movie/movie_app/ui/widgets/movie_grid.dart';
 
 class UpcomingTab extends StatefulWidget {
   const UpcomingTab({super.key});

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_now_playing_movies_usecase.dart';
-import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_state.dart';
-
-import 'package:movie_app/movie_app/ui/widgets/movie_grid.dart';
+import 'package:movie/movie_app/domain/usecases/get_now_playing_movies_usecase.dart';
+import 'package:movie/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/NowPlaying/cubit/now_playing_state.dart';
+import 'package:movie/movie_app/ui/widgets/movie_grid.dart';
 
 class NowPlayingTab extends StatelessWidget {
   const NowPlayingTab({super.key});

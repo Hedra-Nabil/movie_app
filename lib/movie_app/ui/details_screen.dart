@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/domain/entities/movie_details.dart';
-import 'package:movie_app/movie_app/presenter/controllers/movie_details/cubit/movie_details_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/movie_details/cubit/movie_details_state.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_state.dart';
-import 'package:movie_app/movie_app/ui/widgets/movie_poster_card.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
+import 'package:movie/movie_app/presenter/controllers/movie_details/cubit/movie_details_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/movie_details/cubit/movie_details_state.dart';
+import 'package:movie/movie_app/presenter/controllers/watchlist/cubit/watchlist_state.dart';
+import 'package:movie/movie_app/ui/widgets/movie_poster_card.dart';
+import 'package:movie/movie_app/ui/widgets/cast_tab.dart';
+import 'package:movie/movie_app/ui/widgets/reviews_tab.dart';
+import 'package:movie/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Movie movie;
@@ -102,7 +104,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget _buildWatchlistButton(BuildContext context) {
     return BlocBuilder<WatchlistCubit, WatchlistState>(
       builder: (context, state) {
-        final isInWatchlist = state.movies.any((m) => m.id == widget.movie.id);
+        final isInWatchlist = state.movieDetails.any(
+          (m) => m.id == widget.movie.id,
+        );
         return IconButton(
           icon: Icon(
             isInWatchlist ? Icons.bookmark : Icons.bookmark_border,
@@ -121,29 +125,21 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
     if (movieDetailsState is MovieDetailsLoaded) {
       isInWatchlist
-          ? cubit.removeFromWatchlist(
-            widget.movie,
-            movieDetails: movieDetailsState.movie,
-          )
-          : cubit.addToWatchlist(
-            widget.movie,
-            movieDetails: movieDetailsState.movie,
-          );
+          ? cubit.removeFromWatchlist(movieDetails: movieDetailsState.movie)
+          : cubit.addToWatchlist(movieDetails: movieDetailsState.movie);
     }
   }
 
   Widget _buildBody(BuildContext context, MovieDetails movieDetails) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _buildHeaderImage(context, movieDetails),
-          const SizedBox(height: 24),
-          _buildMovieInfoRow(movieDetails),
-          const SizedBox(height: 24),
-          _buildTabBar(),
-          _buildTabContent(movieDetails),
-        ],
-      ),
+    return Column(
+      children: [
+        _buildHeaderImage(context, movieDetails),
+        const SizedBox(height: 24),
+        _buildMovieInfoRow(movieDetails),
+        const SizedBox(height: 24),
+        _buildTabBar(),
+        Expanded(child: _buildTabContent(movieDetails)),
+      ],
     );
   }
 
@@ -326,92 +322,82 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   Widget _buildTabContent(MovieDetails movieDetails) {
-    return SizedBox(
-      height: 220,
-      child: TabBarView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    movieDetails.overview.isNotEmpty
-                        ? movieDetails.overview
-                        : 'No overview available.',
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                      height: 1.5,
-                    ),
-                  ),
-                  if (movieDetails.tagline != null &&
-                      movieDetails.tagline!.isNotEmpty) ...[
-                    const SizedBox(height: 16),
-                    Text(
-                      '"${movieDetails.tagline}"',
-                      style: const TextStyle(
-                        color: Colors.white54,
-                        fontSize: 14,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                  if (movieDetails.genres.isNotEmpty) ...[
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Genres:',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 4,
-                      children:
-                          movieDetails.genres.map((genre) {
-                            return Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF393E46),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Text(
-                                genre.name,
-                                style: const TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                    ),
-                  ],
-                ],
+    return TabBarView(
+      children: [
+        // About Movie Tab
+        SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                movieDetails.overview.isNotEmpty
+                    ? movieDetails.overview
+                    : 'No overview available.',
+                style: const TextStyle(
+                  color: Colors.white70,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
               ),
-            ),
+              if (movieDetails.tagline != null &&
+                  movieDetails.tagline!.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(
+                  '"${movieDetails.tagline}"',
+                  style: const TextStyle(
+                    color: Colors.white54,
+                    fontSize: 14,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+              if (movieDetails.genres.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                const Text(
+                  'Genres:',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  children:
+                      movieDetails.genres.map((genre) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF393E46),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            genre.name,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                ),
+              ],
+            ],
           ),
-          const Center(
-            child: Text(
-              'No reviews yet.',
-              style: TextStyle(color: Colors.white54),
-            ),
-          ),
-          const Center(
-            child: Text(
-              'No cast information.',
-              style: TextStyle(color: Colors.white54),
-            ),
-          ),
-        ],
-      ),
+        ),
+
+        // Reviews Tab
+        ReviewsTab(movieId: movieDetails.id),
+
+        // Cast Tab
+        CastTab(movieId: movieDetails.id),
+      ],
     );
   }
 }

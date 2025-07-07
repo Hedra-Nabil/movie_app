@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/presenter/controllers/featured/cubit/featured_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/featured/cubit/featured_state.dart';
-import 'package:movie_app/movie_app/ui/details_screen.dart';
-
+import 'package:movie/movie_app/presenter/controllers/Featured/cubit/featured_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/Featured/cubit/featured_state.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/ui/details_screen.dart';
 
 class FeaturedMovieCard extends StatelessWidget {
   const FeaturedMovieCard({super.key});

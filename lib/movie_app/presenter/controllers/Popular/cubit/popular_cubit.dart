@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/domain/usecases/get_popular_movies_usecase.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/usecases/get_popular_movies_usecase.dart';
 import 'popular_state.dart';
 
 class PopularCubit extends Cubit<PopularState> {

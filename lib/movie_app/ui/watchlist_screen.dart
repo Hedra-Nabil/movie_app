@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_state.dart';
-import 'package:movie_app/movie_app/ui/widgets/small_detail_movie_card.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
+import 'package:movie/movie_app/ui/widgets/small_detail_movie_card.dart';
+import 'package:movie/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
+import 'package:movie/movie_app/presenter/controllers/watchlist/cubit/watchlist_state.dart';
 
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({super.key});
@@ -18,7 +19,7 @@ class WatchlistScreen extends StatelessWidget {
       ),
       body: BlocBuilder<WatchlistCubit, WatchlistState>(
         builder: (context, state) {
-          if (state.movies.isEmpty) {
+          if (state.movieDetails.isEmpty) {
             return Center(
               child: SizedBox(
                 child: Column(
@@ -44,16 +45,32 @@ class WatchlistScreen extends StatelessWidget {
             );
           }
           return ListView.separated(
-            itemCount: state.movies.length,
             separatorBuilder: (_, __) => const SizedBox(height: 8),
+            itemCount: state.movieDetails.length, // Now this is correct
             itemBuilder: (context, index) {
-              final movie = state.movies[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 16.0,
+              final movieDetails = state.movieDetails[index];
+              return Dismissible(
+                key: Key(movieDetails.id.toString()),
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Icon(Icons.delete, color: Colors.white),
                 ),
-                child: SmallDetailMovieCard(movie: movie, isLarge: false),
+                onDismissed: (direction) => context
+                    .read<WatchlistCubit>()
+                    .removeFromWatchlist(movieDetails: movieDetails),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 16.0,
+                  ),
+                  child: SmallDetailMovieCard(
+                      movie: movieDetails.toMovie(),
+                      movieDetails: movieDetails,
+                      isLarge: false),
+                ),
               );
             },
           );

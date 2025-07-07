@@ -1,6 +1,7 @@
 
 
-import 'package:movie_app/movie_app/domain/entities/movie_details.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
+
 abstract class MovieDetailsState {}
 
 class MovieDetailsInitial extends MovieDetailsState {}

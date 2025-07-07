@@ -1,5 +1,6 @@
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/domain/infra/movie_repository.dart';
+
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/infra/movie_repository.dart';
 
 class GetTopRatedMoviesUseCase {
   final MovieRepository repository;

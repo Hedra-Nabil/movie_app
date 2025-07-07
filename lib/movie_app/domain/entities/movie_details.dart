@@ -1,4 +1,7 @@
-class MovieDetails {
+import 'package:equatable/equatable.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+
+class MovieDetails extends Equatable {
   final bool adult;
   final String? backdropPath;
   final Collection? belongsToCollection;
@@ -162,6 +165,28 @@ class MovieDetails {
 
   String get releaseYear =>
       releaseDate.isNotEmpty ? releaseDate.substring(0, 4) : '';
+
+  Movie toMovie() {
+    return Movie(
+      id: id,
+      title: title,
+      posterPath: posterPath,
+      backdropPath: backdropPath,
+      overview: overview,
+      genreIds: genres.map((g) => g.id).toList(), // Correctly map genres to genreIds
+      releaseDate: releaseDate,
+      voteAverage: voteAverage,
+      adult: adult,
+      originalLanguage: originalLanguage,
+      originalTitle: originalTitle,
+      popularity: popularity,
+      video: video,
+      voteCount: voteCount,
+    );
+  }
+
+  @override
+  List<Object?> get props => [id];
 }
 
 class Collection {

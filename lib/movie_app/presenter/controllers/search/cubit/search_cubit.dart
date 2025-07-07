@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/infra/datasources/movie_api_service.dart';
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/infra/datasources/movie_api_service.dart';
 
 part 'search_state.dart';
 

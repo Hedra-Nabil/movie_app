@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/movie_app/ui/home_screen.dart';
-import 'package:movie_app/movie_app/ui/search_screen.dart';
-import 'package:movie_app/movie_app/ui/watchlist_screen.dart';
 
+import 'package:movie/movie_app/ui/home_screen.dart';
+import 'package:movie/movie_app/ui/search_screen.dart';
+import 'package:movie/movie_app/ui/watchlist_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-
+import 'package:movie/movie_app/domain/entities/movie.dart';
+import 'package:movie/movie_app/domain/entities/movie_details.dart';
+import 'package:movie/movie_app/ui/details_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/movie_app/domain/entities/movie.dart';
-import 'package:movie_app/movie_app/presenter/controllers/watchlist/cubit/watchlist_cubit.dart';
-import 'package:movie_app/movie_app/ui/details_screen.dart';
 
 class SmallDetailMovieCard extends StatelessWidget {
   final Movie movie;
+  final MovieDetails? movieDetails;
   final bool isLarge;
   final VoidCallback? onTap;
 
   const SmallDetailMovieCard({
     super.key,
     required this.movie,
+    this.movieDetails,
     this.isLarge = false,
     this.onTap,
   });
@@ -66,10 +65,6 @@ class SmallDetailMovieCard extends StatelessWidget {
   }
 
   Widget _buildMovieInfo(BuildContext context) {
-    final isInWatchlist = context
-        .select<WatchlistCubit, List<Movie>>((cubit) => cubit.state.movies)
-        .contains(movie);
-
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Column(
@@ -98,6 +93,7 @@ class SmallDetailMovieCard extends StatelessWidget {
             ],
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
@@ -120,20 +116,28 @@ class SmallDetailMovieCard extends StatelessWidget {
 
               Row(
                 children: [
-                  Icon(
-                    Icons.airplane_ticket_outlined,
-                    color: Colors.white.withOpacity(0.7),
-                    size: 16,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    movie.formattedRating,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                  if (movieDetails?.genres.isNotEmpty ?? false)
+                    Icon(
+                      Icons.movie_creation_outlined,
+                      color: Colors.white.withOpacity(0.7),
+                      size: 16,
                     ),
-                  ),
+                  const SizedBox(width: 4),
+                  if (movieDetails?.genres.isNotEmpty ?? false)
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        movieDetails!.genres.isNotEmpty
+                            ? movieDetails!.genres.first.name
+                            : 'N/A',
+                        style: const TextStyle(
+                          color: Colors.white60,
+                          fontSize: 12,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                 ],
               ),
               Row(
@@ -146,7 +150,7 @@ class SmallDetailMovieCard extends StatelessWidget {
                     ),
 
                   Text(
-                    movie.releaseDate.split('-')[0],
+                    movie.releaseYear,
                     style: const TextStyle(color: Colors.white60, fontSize: 12),
                   ),
                 ],
@@ -154,13 +158,15 @@ class SmallDetailMovieCard extends StatelessWidget {
               Row(
                 children: [
                   Icon(
-                    Icons.timelapse_outlined,
+                    Icons.access_time_outlined,
                     color: Colors.white.withOpacity(0.7),
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    movie.formattedRating,
+                    movieDetails?.runtime != null
+                        ? '${movieDetails!.runtime} min'
+                        : 'N/A',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,

@@ -298,13 +298,24 @@ To get a copy of the project up and running on your local machine for developmen
 
 ## 📱 Screenshots & Mockups
 <div align="center">
-  <img src="screenshots/home_dark.png" width="30%" alt="Dark Mode Home"/>
-  <img src="screenshots/movie_details.png" width="30%" alt="Movie Details"/> 
-  <img src="screenshots/favorites.png" width="30%" alt="Favorites Screen"/>
+
+| Screenshot 1 | Screenshot 2 | Screenshot 3 |
+|:------------:|:------------:|:------------:|
+| ![Image 1](https://github.com/Hedra-Nabil/movie_app/blob/main/1.jpg) | ![Image 2](https://github.com/Hedra-Nabil/movie_app/blob/main/2.jpg) | ![Image 3](https://github.com/Hedra-Nabil/movie_app/blob/main/3.jpg) |
+| *Caption for Image 1* | *Caption for Image 2* | *Caption for Image 3* |
+| ![Image 4](https://github.com/Hedra-Nabil/movie_app/blob/main/4.jpg) | ![Image 5](https://github.com/Hedra-Nabil/movie_app/blob/main/5.jpg) | ![Image 6](https://github.com/Hedra-Nabil/movie_app/blob/main/6.jpg) |
+| *Caption for Image 4* | *Caption for Image 5* | *Caption for Image 6* |
+| ![Image 7](https://github.com/Hedra-Nabil/movie_app/blob/main/7.jpg) | ![Image 8](https://github.com/Hedra-Nabil/movie_app/blob/main/8.jpg) | ![Image 9](https://github.com/Hedra-Nabil/movie_app/blob/main/9.jpg) |
+| *Caption for Image 7* | *Caption for Image 8* | *Caption for Image 9* |
+| ![Image 10](https://github.com/Hedra-Nabil/movie_app/blob/main/10.jpg) | ![Image 11](https://github.com/Hedra-Nabil/movie_app/blob/main/11.jpg) | ![Image 12](https://github.com/Hedra-Nabil/movie_app/blob/main/12.jpg) |
+| *Caption for Image 10* | *Caption for Image 11* | *Caption for Image 12* |
+
 </div>
 
-📌 **[View Full Figma Design](https://www.figma.com/file/example)**  
-📌 **[Project Documentation](https://www.notion.so/example)**
+
+
+📌 **[View Full Figma Design](https://www.figma.com/design/XUI0FcwkjT7dk5oW1YI2dp/Movies-app--Community-?node-id=20-884&t=LqnK2KRDcU6o5Z3u-1)**  
+📌 **[Project Documentation](https://www.notion.so/Movie-App-218ba2170e2980d19f5fd6a175fad245?source=copy_link)**
 
 
 ---
@@ -313,7 +324,7 @@ To get a copy of the project up and running on your local machine for developmen
 ```text
 MIT License
 
-Copyright (c) 2023 Hedra Nabil
+Copyright (c) 2025 Hedra Nabil
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -332,6 +343,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Contact: hedranabil614@gmail.com
 ```
 
 ---
@@ -342,10 +355,10 @@ SOFTWARE.
   <a href="https://github.com/Hedra-Nabil">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"/>
   </a>
-  <a href="mailto:your.email@example.com">
+  <a href="mailto:hedranabil614@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
-  <a href="https://linkedin.com/in/yourprofile">
+  <a href="https://www.linkedin.com/in/hedra-nabil-6043221a4/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
   </a>
 </div>
